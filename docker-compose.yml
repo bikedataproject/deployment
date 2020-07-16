@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+   registrations-api:
+     image: docker.pkg.github.com/bikedataproject/registration-api/registration-api
+     ports:
+      - "5000:5000"
+     environment:
+      BIKEDATA_DB: /run/secrets/db_connection_string
+      BIKEDATA_STRAVA_CLIENT_ID: /run/secrets/strava_client_id
+      BIKEDATA_STRAVA_CLIENT_SECRET: /run/secrets/strava_client_secret
+      BIKEDATA_STRAVA_AUTH_END_POINT: 'endpoint-url-here'
+     secrets:
+       - db_connection_string
+       - strava_client_id
+       - strava_client_secret
