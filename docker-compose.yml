@@ -14,3 +14,10 @@ services:
        - db_connection_string
        - strava_client_id
        - strava_client_secret
+secrets:
+  db_connection_string:
+    external: true
+  strava_client_id:
+    external: true
+  strava_client_secret:
+    external: true
