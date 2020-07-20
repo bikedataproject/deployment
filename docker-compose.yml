@@ -19,12 +19,48 @@ services:
        - strava_client_id
        - strava_client_secret
 
+   strava-daemon:
+    image: docker.pkg.github.com/bikedataproject/go-strava-daemon/go-strava-daemon:staging
+    networks:
+      - api-network
+    ports:
+      - "5001:5000"
+    environment:
+      CONFIG_POSTGRESHOST: /run/secrets/db_host
+      CONFIG_POSTGRESPORT: /run/secrets/db_port
+      CONFIG_POSTGRESPASSWORD: /run/secrets/db_password
+      CONFIG_POSTGRESUSER: /run/secrets/db_user
+      CONFIG_POSTGRESDB: /run/secrets/db_name
+      CONFIG_POSTGRESREQUIRESSL: 'require'
+      CONFIG_STRAVACLIENTID: /run/secrets/strava_client_id
+      CONFIG_STRAVACLIENTSECRET: /run/secrets/strava_client_secret
+      CONFIG_CALLBACKURL: 'url-of-this-service-here'
+      CONFIG_STRAVAWEBHOOKURL: 'https://www.strava.com/api/v3/push_subscriptions'
+    secrets:
+      - strava_client_id
+      - strava_client_secret
+      - db_host
+      - db_port
+      - db_password
+      - db_user
+      - db_name
+
 secrets:
   db_connection_string:
     external: true
   strava_client_id:
     external: true
   strava_client_secret:
+    external: true
+  db_host:
+    external: true
+  db_port:
+    external: true
+  db_password:
+    external: true
+  db_user:
+    external: true
+  db_name:
     external: true
 
 networks:
