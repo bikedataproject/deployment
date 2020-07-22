@@ -35,7 +35,7 @@ services:
       CONFIG_STRAVACLIENTID: /run/secrets/strava_client_id
       CONFIG_STRAVACLIENTSECRET: /run/secrets/strava_client_secret
       CONFIG_CALLBACKURL: 'url-of-this-service-here'
-      CONFIG_STRAVAWEBHOOKURL: 'https://www.strava.com/api/v3/push_subscriptions'
+      CONFIG_STRAVAWEBHOOKURL: 'https://www.strava.com/api/v3/push_subscriptions/dontstartyet'
     secrets:
       - strava_client_id
       - strava_client_secret
