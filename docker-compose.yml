@@ -1,6 +1,17 @@
 version: '3.1'
 
 services:
+   geo-api:
+     image: docker.pkg.github.com/bikedataproject/geo-api/geo-api:staging
+     networks:
+      - api-network    
+     ports:
+      - "5002:5000"
+     volumes:
+      - /var/services/geo-api/logs:/var/app/logs
+     environment:
+     secrets:
+       - db_connection_string
    registrations-api:
      image: docker.pkg.github.com/bikedataproject/registration-api/registration-api:staging
      networks:
@@ -18,7 +29,6 @@ services:
        - db_connection_string
        - strava_client_id
        - strava_client_secret
-
    strava-daemon:
     image: docker.pkg.github.com/bikedataproject/go-strava-daemon/go-strava-daemon:staging
     networks:
