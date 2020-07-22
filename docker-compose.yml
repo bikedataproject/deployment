@@ -10,6 +10,7 @@ services:
      volumes:
       - /var/services/geo-api/logs:/var/app/logs
      environment:
+      BIKEDATA_DB: /run/secrets/db_connection_string
      secrets:
        - db_connection_string
    registrations-api:
