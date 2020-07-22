@@ -31,7 +31,7 @@ services:
        - strava_client_id
        - strava_client_secret
    strava-daemon:
-    image: docker.pkg.github.com/bikedataproject/go-strava-daemon/go-strava-daemon:staging
+    image: bikedataproject/go-strava-daemon:staging
     networks:
       - api-network
     ports:
