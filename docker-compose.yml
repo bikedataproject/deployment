@@ -25,7 +25,7 @@ services:
       BIKEDATA_DB: /run/secrets/db_connection_string
       BIKEDATA_STRAVA_CLIENT_ID: /run/secrets/strava_client_id
       BIKEDATA_STRAVA_CLIENT_SECRET: /run/secrets/strava_client_secret
-      BIKEDATA_STRAVA_AUTH_END_POINT: 'endpoint-url-here'
+      BIKEDATA_STRAVA_AUTH_END_POINT: 'https://www.strava.com/oauth/token'
      secrets:
        - db_connection_string
        - strava_client_id
