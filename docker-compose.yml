@@ -35,7 +35,7 @@ services:
     networks:
       - api-network
     ports:
-      - "5000:5001"
+      - "4000:4000"
     environment:
       CONFIG_POSTGRESHOST: /run/secrets/db_host
       CONFIG_POSTGRESPORTENV: /run/secrets/db_port
