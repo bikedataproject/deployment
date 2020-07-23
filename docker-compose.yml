@@ -36,6 +36,8 @@ services:
       - api-network
     ports:
       - "4000:4000"
+    volumes:
+      - /var/services/strava-daemon/logs:/build/log
     environment:
       CONFIG_POSTGRESHOST: /run/secrets/db_host
       CONFIG_POSTGRESPORTENV: /run/secrets/db_port
