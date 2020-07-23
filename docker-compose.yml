@@ -45,8 +45,8 @@ services:
       CONFIG_POSTGRESREQUIRESSL: 'require'
       CONFIG_STRAVACLIENTID: /run/secrets/strava_client_id
       CONFIG_STRAVACLIENTSECRET: /run/secrets/strava_client_secret
-      CONFIG_CALLBACKURL: 'url-of-this-service-here'
-      CONFIG_STRAVAWEBHOOKURL: 'https://www.strava.com/api/v3/push_subscriptions/dontstartyet'
+      CONFIG_CALLBACKURL: 'https://api.bikedataproject.info/webhooks/strava/'
+      CONFIG_STRAVAWEBHOOKURL: 'https://www.strava.com/api/v3/push_subscriptions'
     secrets:
       - strava_client_id
       - strava_client_secret
