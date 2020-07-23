@@ -38,7 +38,7 @@ services:
       - "5001:5000"
     environment:
       CONFIG_POSTGRESHOST: /run/secrets/db_host
-      CONFIG_POSTGRESPORT: /run/secrets/db_port
+      CONFIG_POSTGRESPORTENV: /run/secrets/db_port
       CONFIG_POSTGRESPASSWORD: /run/secrets/db_password
       CONFIG_POSTGRESUSER: /run/secrets/db_user
       CONFIG_POSTGRESDB: /run/secrets/db_name
