@@ -1,60 +1,60 @@
-version: '3.1'
+version: "3.1"
 
 services:
   statistics-service:
     image: bikedataproject/statistics-service:staging
     networks:
-     - api-network    
+      - api-network
     volumes:
-     - /var/services/statistics-service/logs:/var/app/logs
+      - /var/services/statistics-service/logs:/var/app/logs
     environment:
-     BIKEDATA_DB: /run/secrets/db_connection_string
-     BIKEDATA_STATS_DB: /run/secrets/db_stats_connection_string
+      BIKEDATA_DB: /run/secrets/db_connection_string
+      BIKEDATA_STATS_DB: /run/secrets/db_stats_connection_string
     secrets:
       - db_connection_string
       - db_stats_connection_string
   geo-api:
-     image: bikedataproject/geo-api:staging
-     networks:
-      - api-network    
-     ports:
+    image: bikedataproject/geo-api:staging
+    networks:
+      - api-network
+    ports:
       - "5002:5000"
-     volumes:
+    volumes:
       - /var/services/geo-api/logs:/var/app/logs
-     environment:
+    environment:
       BIKEDATA_DB: /run/secrets/db_connection_string
-     secrets:
-       - db_connection_string
+    secrets:
+      - db_connection_string
   registrations-api:
-     image: bikedataproject/registration-api:staging
-     networks:
-      - api-network    
-     ports:
+    image: bikedataproject/registration-api:staging
+    networks:
+      - api-network
+    ports:
       - "5000:5000"
-     volumes:
+    volumes:
       - /var/services/registrations-api/logs:/var/app/logs
-     environment:
+    environment:
       BIKEDATA_DB: /run/secrets/db_connection_string
       BIKEDATA_STRAVA_CLIENT_ID: /run/secrets/strava_client_id
       BIKEDATA_STRAVA_CLIENT_SECRET: /run/secrets/strava_client_secret
-      BIKEDATA_STRAVA_AUTH_END_POINT: 'https://www.strava.com/oauth/token'
-     secrets:
-       - db_connection_string
-       - strava_client_id
-       - strava_client_secret
+      BIKEDATA_STRAVA_AUTH_END_POINT: "https://www.strava.com/oauth/token"
+    secrets:
+      - db_connection_string
+      - strava_client_id
+      - strava_client_secret
   file-upload:
-     image: bikedataproject/file-upload:staging
-     networks:
+    image: bikedataproject/file-upload:staging
+    networks:
       - api-network
-     ports:
+    ports:
       - "5001:5000"
-     volumes:
+    volumes:
       - /var/services/file-upload/logs:/var/app/logs
       - /var/services/file-upload/data:/var/app/data
-     environment:
-      BIKEDATA_FILE_PATH: '/var/app/data/'
-      BIKEDATA_FILE_EXTENSIONS: 'GPX;FIT'
-      BIKEDATA_FILE_SIZE_LIMIT: '10485760'
+    environment:
+      BIKEDATA_FILE_PATH: "/var/app/data/"
+      BIKEDATA_FILE_EXTENSIONS: "GPX;FIT"
+      BIKEDATA_FILE_SIZE_LIMIT: "10485760"
   strava-daemon:
     image: bikedataproject/go-strava-daemon:staging
     networks:
@@ -69,14 +69,35 @@ services:
       CONFIG_POSTGRESPASSWORD: /run/secrets/db_password
       CONFIG_POSTGRESUSER: /run/secrets/db_user
       CONFIG_POSTGRESDB: /run/secrets/db_name
-      CONFIG_POSTGRESREQUIRESSL: 'require'
+      CONFIG_POSTGRESREQUIRESSL: "require"
       CONFIG_STRAVACLIENTID: /run/secrets/strava_client_id
       CONFIG_STRAVACLIENTSECRET: /run/secrets/strava_client_secret
-      CONFIG_CALLBACKURL: 'https://api.bikedataproject.info/webhook/strava'
-      CONFIG_STRAVAWEBHOOKURL: 'https://www.strava.com/api/v3/push_subscriptions'
+      CONFIG_CALLBACKURL: "https://api.bikedataproject.info/webhook/strava"
+      CONFIG_STRAVAWEBHOOKURL: "https://www.strava.com/api/v3/push_subscriptions"
     secrets:
       - strava_client_id
       - strava_client_secret
+      - db_host
+      - db_port
+      - db_password
+      - db_user
+      - db_name
+  file-processing-daemon:
+    image: bikedataproject/go-file-processing-daemon:staging
+    networks:
+      - api-network
+    volumes:
+      - /var/services/file-processing-daemon/logs:/build/log
+      - /var/services/file-upload/data:/data
+    environment:
+      CONFIG_POSTGRESHOST: /run/secrets/db_host
+      CONFIG_POSTGRESPORTENV: /run/secrets/db_port
+      CONFIG_POSTGRESPASSWORD: /run/secrets/db_password
+      CONFIG_POSTGRESUSER: /run/secrets/db_user
+      CONFIG_POSTGRESDB: /run/secrets/db_name
+      CONFIG_POSTGRESREQUIRESSL: "require"
+      CONFIG_FILEDIR: "/data"
+    secrets:
       - db_host
       - db_port
       - db_password
