@@ -13,6 +13,17 @@ services:
     secrets:
       - db_connection_string
       - db_stats_connection_string
+  statistics-service-tiles:
+    image: bikedataproject/statistics-service-tiles:staging
+    networks:
+      - api-network
+    volumes:
+      - /var/services/statistics-service-tiles/logs:/var/app/logs
+      - /var/services/statistics-service-tiles/data:/var/app/data
+    environment:
+      BIKEDATA_STATS_DB: /run/secrets/db_stats_connection_string
+    secrets:
+      - db_stats_connection_string
   geo-api:
     image: bikedataproject/geo-api:staging
     networks:
