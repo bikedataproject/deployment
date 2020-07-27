@@ -1,6 +1,18 @@
 version: '3.1'
 
 services:
+  statistics-service:
+    image: bikedataproject/statistics-service:staging
+    networks:
+     - api-network    
+    volumes:
+     - /var/services/statistics-service/logs:/var/app/logs
+    environment:
+     BIKEDATA_DB: /run/secrets/db_connection_string
+     BIKEDATA_STATS_DB: /run/secrets/db_stats_connection_string
+    secrets:
+      - db_connection_string
+      - db_stats_connection_string
    geo-api:
      image: bikedataproject/geo-api:staging
      networks:
@@ -73,6 +85,8 @@ services:
 
 secrets:
   db_connection_string:
+    external: true
+  db_stats_connection_string:
     external: true
   strava_client_id:
     external: true
