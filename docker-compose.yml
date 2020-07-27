@@ -52,8 +52,8 @@ services:
       - /var/services/file-upload/logs:/var/app/logs
       - /var/services/file-upload/data:/var/app/data
      environment:
-      BIKEDATA_FILE_PATH: /var/app/data 
-      BIKEDATA_FILE_EXTENSIONS: GPX;FIT
+      BIKEDATA_FILE_PATH: '/var/app/data/'
+      BIKEDATA_FILE_EXTENSIONS: 'GPX;FIT'
       BIKEDATA_FILE_SIZE_LIMIT: '10485760'
   strava-daemon:
     image: bikedataproject/go-strava-daemon:staging
