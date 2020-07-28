@@ -49,6 +49,7 @@ services:
       BIKEDATA_STRAVA_CLIENT_ID: /run/secrets/strava_client_id
       BIKEDATA_STRAVA_CLIENT_SECRET: /run/secrets/strava_client_secret
       BIKEDATA_STRAVA_AUTH_END_POINT: "https://www.strava.com/oauth/token"
+      BIKEDATA_REDIRECTION_URI: "https://bikedataproject.info/"
     secrets:
       - db_connection_string
       - strava_client_id
@@ -74,6 +75,7 @@ services:
       - "4000:4000"
     volumes:
       - /var/services/strava-daemon/logs:/build/log
+      - /var/services/strava-daemon/cache:/build/cache
     environment:
       CONFIG_POSTGRESHOST: /run/secrets/db_host
       CONFIG_POSTGRESPORTENV: /run/secrets/db_port
