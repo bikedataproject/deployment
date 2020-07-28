@@ -55,7 +55,7 @@ services:
       BIKEDATA_STRAVA_CLIENT_ID: /run/secrets/strava_client_id
       BIKEDATA_STRAVA_CLIENT_SECRET: /run/secrets/strava_client_secret
       BIKEDATA_STRAVA_AUTH_END_POINT: "https://www.strava.com/oauth/token"
-      BIKEDATA_REDIRECTION_URI: "https://bikedataproject.info/"
+      BIKEDATA_REDIRECTION_URI: "https://staging.bikedataproject.info/"
     secrets:
       - db_connection_string
       - strava_client_id
