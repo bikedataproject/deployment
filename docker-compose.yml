@@ -1,6 +1,12 @@
 version: "3.1"
 
 services:
+  website:
+    image: bikedataproject/website:staging
+    networks:
+      - api-network
+    ports:
+      - "5003:80"
   statistics-service:
     image: bikedataproject/statistics-service:staging
     networks:
