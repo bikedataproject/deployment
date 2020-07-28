@@ -73,34 +73,34 @@ services:
       BIKEDATA_FILE_PATH: "/var/app/data/"
       BIKEDATA_FILE_EXTENSIONS: "GPX;FIT"
       BIKEDATA_FILE_SIZE_LIMIT: "10485760"
-#  strava-daemon:
-#    image: bikedataproject/go-strava-daemon:staging
-#    networks:
-#      - api-network
-#    ports:
-#      - "4000:4000"
-#    volumes:
-#      - /var/services/strava-daemon/logs:/build/log
-#      - /var/services/strava-daemon/cache:/build/cache
-#    environment:
-#      CONFIG_POSTGRESHOST: /run/secrets/db_host
-#      CONFIG_POSTGRESPORTENV: /run/secrets/db_port
-#      CONFIG_POSTGRESPASSWORD: /run/secrets/db_password
-#      CONFIG_POSTGRESUSER: /run/secrets/db_user
-#      CONFIG_POSTGRESDB: /run/secrets/db_name
-#      CONFIG_POSTGRESREQUIRESSL: "require"
-#      CONFIG_STRAVACLIENTID: /run/secrets/strava_client_id
-#      CONFIG_STRAVACLIENTSECRET: /run/secrets/strava_client_secret
-#      CONFIG_CALLBACKURL: "https://api.bikedataproject.info/webhook/strava"
-#      CONFIG_STRAVAWEBHOOKURL: "https://www.strava.com/api/v3/push_subscriptions"
-#    secrets:
-#      - strava_client_id
-#      - strava_client_secret
-#      - db_host
-#      - db_port
-#      - db_password
-#      - db_user
-#      - db_name
+  strava-daemon:
+    image: bikedataproject/go-strava-daemon:staging
+    networks:
+      - api-network
+    ports:
+      - "4000:4000"
+    volumes:
+      - /var/services/strava-daemon/logs:/build/log
+      - /var/services/strava-daemon/cache:/build/cache
+    environment:
+      CONFIG_POSTGRESHOST: /run/secrets/db_host
+      CONFIG_POSTGRESPORTENV: /run/secrets/db_port
+      CONFIG_POSTGRESPASSWORD: /run/secrets/db_password
+      CONFIG_POSTGRESUSER: /run/secrets/db_user
+      CONFIG_POSTGRESDB: /run/secrets/db_name
+      CONFIG_POSTGRESREQUIRESSL: "require"
+      CONFIG_STRAVACLIENTID: /run/secrets/strava_client_id
+      CONFIG_STRAVACLIENTSECRET: /run/secrets/strava_client_secret
+      CONFIG_CALLBACKURL: "https://api.bikedataproject.info/webhook/strava"
+      CONFIG_STRAVAWEBHOOKURL: "https://www.strava.com/api/v3/push_subscriptions"
+    secrets:
+      - strava_client_id
+      - strava_client_secret
+      - db_host
+      - db_port
+      - db_password
+      - db_user
+      - db_name
   file-processing-daemon:
     image: bikedataproject/go-file-processing-daemon:staging
     networks:
