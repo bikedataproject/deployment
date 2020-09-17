@@ -27,7 +27,15 @@ services:
       - db_password
       - db_user
       - db_name
-
+  statistics-db:
+    image: postgres:12.4
+    ports:
+      - "15432:5432"
+    volumes:
+    - /var/services/statistics-db/:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: Ny63FBPugHaUDt2
+      
 secrets:
   strava_client_id:
     external: true
