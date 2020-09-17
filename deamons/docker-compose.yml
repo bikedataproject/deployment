@@ -9,11 +9,11 @@ services:
       - /var/services/strava-daemon/logs:/build/log
       - /var/services/strava-daemon/cache:/build/cache
     environment:
-      CONFIG_POSTGRESHOST: "contributions-do-user-278630-0.b.db.ondigitalocean.com"
-      CONFIG_POSTGRESPORTENV: "25060"
+      CONFIG_POSTGRESHOST: /run/secrets/db_host
+      CONFIG_POSTGRESPORTENV: /run/secrets/db_port
       CONFIG_POSTGRESPASSWORD: /run/secrets/db_password
-      CONFIG_POSTGRESUSER: "doadmin"
-      CONFIG_POSTGRESDB: "contributions"
+      CONFIG_POSTGRESUSER: /run/secrets/db_user
+      CONFIG_POSTGRESDB: /run/secrets/db_name
       CONFIG_POSTGRESREQUIRESSL: "require"
       CONFIG_STRAVACLIENTID: /run/secrets/strava_client_id
       CONFIG_STRAVACLIENTSECRET: /run/secrets/strava_client_secret
@@ -22,12 +22,24 @@ services:
     secrets:
       - strava_client_id
       - strava_client_secret
+      - db_host
+      - db_port
       - db_password
+      - db_user
+      - db_name
 
 secrets:
   strava_client_id:
     external: true
   strava_client_secret:
     external: true
+  db_host:
+    external: true
+  db_port:
+    external: true
   db_password:
+    external: true
+  db_user:
+    external: true
+  db_name:
     external: true
