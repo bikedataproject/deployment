@@ -3,8 +3,6 @@ version: "3.1"
 services:
   registrations-api:
     image: bikedataproject/registration-api:staging
-    networks:
-      - api-network
     ports:
       - "5000:5000"
     volumes:
@@ -38,8 +36,4 @@ secrets:
   db_user:
     external: true
   db_name:
-    external: true
-
-networks:
-  api-network:
     external: true
