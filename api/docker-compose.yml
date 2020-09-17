@@ -17,6 +17,16 @@ services:
       - db_connection_string
       - strava_client_id
       - strava_client_secret
+  geo-api:
+    image: bikedataproject/geo-api:staging
+    ports:
+      - "5002:5000"
+    volumes:
+      - /var/services/geo-api/logs:/var/app/logs
+    environment:
+      BIKEDATA_DB: /run/secrets/db_connection_string
+    secrets:
+      - db_connection_string
 
 secrets:
   db_connection_string:
