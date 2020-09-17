@@ -1,22 +1,8 @@
 version: "3.1"
 
 services:
-  geo-api:
-    image: bikedataproject/geo-api:staging
-    networks:
-      - api-network
-    ports:
-      - "5002:5000"
-    volumes:
-      - /var/services/geo-api/logs:/var/app/logs
-    environment:
-      BIKEDATA_DB: /run/secrets/db_connection_string
-    secrets:
-      - db_connection_string
   registrations-api:
     image: bikedataproject/registration-api:staging
-    networks:
-      - api-network
     ports:
       - "5000:5000"
     volumes:
@@ -26,53 +12,11 @@ services:
       BIKEDATA_STRAVA_CLIENT_ID: /run/secrets/strava_client_id
       BIKEDATA_STRAVA_CLIENT_SECRET: /run/secrets/strava_client_secret
       BIKEDATA_STRAVA_AUTH_END_POINT: "https://www.strava.com/oauth/token"
-      BIKEDATA_REDIRECTION_URI: "https://staging.bikedataproject.info/"
+      BIKEDATA_REDIRECTION_URI: "https://www.bikedataproject.org/"
     secrets:
       - db_connection_string
       - strava_client_id
       - strava_client_secret
-  file-upload:
-    image: bikedataproject/file-upload:staging
-    networks:
-      - api-network
-    ports:
-      - "5001:5000"
-    volumes:
-      - /var/services/file-upload/logs:/var/app/logs
-      - /var/services/file-upload/data:/var/app/data
-    environment:
-      BIKEDATA_FILE_PATH: "/var/app/data/"
-      BIKEDATA_FILE_EXTENSIONS: "GPX;FIT"
-      BIKEDATA_FILE_SIZE_LIMIT: "10485760"
-    secrets:
-      - strava_client_id
-      - strava_client_secret
-      - db_host
-      - db_port
-      - db_password
-      - db_user
-      - db_name
-  file-processing-daemon:
-    image: bikedataproject/go-file-processing-daemon:staging
-    networks:
-      - api-network
-    volumes:
-      - /var/services/file-processing-daemon/logs:/build/log
-      - /var/services/file-upload/data:/data
-    environment:
-      CONFIG_POSTGRESHOST: /run/secrets/db_host
-      CONFIG_POSTGRESPORTENV: /run/secrets/db_port
-      CONFIG_POSTGRESPASSWORD: /run/secrets/db_password
-      CONFIG_POSTGRESUSER: /run/secrets/db_user
-      CONFIG_POSTGRESDB: /run/secrets/db_name
-      CONFIG_POSTGRESREQUIRESSL: "require"
-      CONFIG_FILEDIR: "/data"
-    secrets:
-      - db_host
-      - db_port
-      - db_password
-      - db_user
-      - db_name
 
 secrets:
   db_connection_string:
@@ -92,8 +36,4 @@ secrets:
   db_user:
     external: true
   db_name:
-    external: true
-
-networks:
-  api-network:
     external: true
