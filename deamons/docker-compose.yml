@@ -34,7 +34,7 @@ services:
     volumes:
     - /var/services/statistics-db/:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: Ny63FBPugHaUDt2
+      POSTGRES_PASSWORD_FILE: /run/secrets/stats_db_password
       
 secrets:
   strava_client_id:
@@ -50,4 +50,6 @@ secrets:
   db_user:
     external: true
   db_name:
+    external: true
+  stats_db_password:
     external: true
