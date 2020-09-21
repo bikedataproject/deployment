@@ -35,6 +35,8 @@ services:
     - /var/services/statistics-db/:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/stats_db_password
+    secrets:
+      - stats_db_password
       
 secrets:
   strava_client_id:
