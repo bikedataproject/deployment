@@ -35,6 +35,17 @@ services:
     - /var/services/statistics-db/:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: Ny63FBPugHaUDt2
+  file-upload:
+    image: bikedataproject/file-upload:staging
+    ports:
+      - "5001:5000"
+    volumes:
+      - /var/services/file-upload/logs:/var/app/logs
+      - /var/services/file-upload/data:/var/app/data
+    environment:
+      BIKEDATA_FILE_PATH: "/var/app/data/"
+      BIKEDATA_FILE_EXTENSIONS: "GPX;FIT"
+      BIKEDATA_FILE_SIZE_LIMIT: "10485760"
       
 secrets:
   strava_client_id:
