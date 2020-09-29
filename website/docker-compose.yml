@@ -5,7 +5,7 @@ services:
     image: bikedataproject/website:prod
     ports:
       - "5003:80"
- website-staging:
+  website-staging:
     image: bikedataproject/website:staging
     ports:
       - "5004:80"
