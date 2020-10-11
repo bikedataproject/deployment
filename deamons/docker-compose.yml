@@ -67,17 +67,6 @@ services:
       - db_password
       - db_user
       - db_name      
-  heatmap-tiles-service:
-    image: bikedataproject/heatmap-tiles-service:staging
-    volumes:
-      - /var/services/heatmap-tiles-service/tiles:/var/app/tiles
-      - /var/services/heatmap-tiles-service/data:/var/app/data
-      - /var/services/heatmap-tiles-service/logs:/var/app/logs
-    environment:
-      BIKEDATA_DB: /run/secrets/db_connection_string
-      BIKEDATA_MAX_CONTRIBUTIONS: '10'
-    secrets:
-      - db_connection_string
       
 secrets:
   db_connection_string:
