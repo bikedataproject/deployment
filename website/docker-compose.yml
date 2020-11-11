@@ -5,6 +5,10 @@ services:
     image: bikedataproject/website:prod
     ports:
       - "5003:80"
+  data-portal:
+    image: bikedataproject/data-portal:prod
+    ports:
+      - "5005:80"
   website-staging:
     image: bikedataproject/website:staging
     ports:
