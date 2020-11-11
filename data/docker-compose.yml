@@ -1,0 +1,18 @@
+version: "3.1"
+
+services:
+  heatmap-tiles-service:
+    image: bikedataproject/heatmap-tiles-service:staging
+    volumes:
+      - /var/services/heatmap/db:/var/app/data
+      - /var/services/heatmap/tiles:/var/app/tiles
+      - /var/services/heatmap/logs:/var/app/logs
+    environment:
+      BIKEDATA_DB: /run/secrets/db_connection_string
+    secrets:
+      - db_connection_string
+
+secrets:
+  db_connection_string:
+    external: true
+
