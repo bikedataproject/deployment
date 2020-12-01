@@ -26,3 +26,11 @@ Continuous deployment is setup using a simple cronjob:
 ```sh
 */1 * * * * cd /var/deployment && git pull && docker stack deploy -c docker-compose.yml api --with-registry-auth
 ```
+
+## Architecture
+
+The bikedata project consists of various servers:
+
+The frontend server is hosted at https://www.bikedataproject.org/ - a relatively lightweight server.
+Another server, the `data`-server (aka the `bikedataprojectdata`-server) does the heavy lifting (generating the tiles, keeping track of all the data, ...)
+The webserver acts as a proxy for the data server, the webserver's NGINX forwards the necessary requests.
