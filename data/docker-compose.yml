@@ -12,7 +12,7 @@ services:
     secrets:
       - db_connection_string
   virtual-traffic-count:
-    image: anywaysopen/virtual-traffic-count
+    image: anywaysopen/traffic-count-api
     volumes:
       - /var/services/virtual-traffic-counters/data/:/var/app/data/
       - /var/services/logs/virtual-traffic-counts/:/var/app/logs/
