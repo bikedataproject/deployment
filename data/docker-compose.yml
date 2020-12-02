@@ -11,6 +11,13 @@ services:
       BIKEDATA_DB: /run/secrets/db_connection_string
     secrets:
       - db_connection_string
+  virtual-traffic-count:
+    image: anywaysopen/virtual-traffic-count
+    volumes:
+      - /var/services/virtual-traffic-counters/data/:/var/app/data/
+      - /var/services/logs/virtual-traffic-counts/:/var/app/logs/
+    ports:
+      - 5006:5000
 
 secrets:
   db_connection_string:
