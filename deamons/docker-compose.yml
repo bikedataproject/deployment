@@ -48,6 +48,14 @@ services:
       BIKEDATA_FILE_PATH: "/var/app/data/"
       BIKEDATA_FILE_EXTENSIONS: "GPX;FIT"
       BIKEDATA_FILE_SIZE_LIMIT: "10485760"
+  statistics-db-service:
+    image: bikedataproject/statistics-service:staging
+    environment:
+      BIKEDATA_DB: /run/secrets/db_host
+      BIKEDATA_STATS_DB: /run/secrets/stats_db_password
+    secrets:
+      - db_host
+      - stats_db_password
   file-upload-processing-daemon:
     image: bikedataproject/go-file-processing-daemon:staging
     volumes:
