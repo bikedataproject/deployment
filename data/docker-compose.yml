@@ -19,6 +19,19 @@ services:
       - /var/services/deployment/data/config/virtual-traffic-count:/var/app/config
     ports:
       - 5006:5000
+  virtual-traffic-mapmatching:
+    image: anywaysopen/traffic-count-mapmatching:prod
+    volumes:
+      - /var/services/virtual-traffic-mapmatching/data/:/var/app/data/
+      - /var/services/logs/virtual-traffic-mapmatching/:/var/app/logs/
+      - /var/services/shared/virtual-traffic/:/var/app/output/
+      - /var/services/deployment/data/config/virtual-traffic-mapmatching:/var/app/config
+    environment:
+      BIKEDATA_DB: /run/secrets/db_connection_string
+    secrets:
+      - db_connection_string
+    ports:
+      - 5006:5000
 
 secrets:
   db_connection_string:
