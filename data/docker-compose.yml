@@ -16,6 +16,7 @@ services:
     volumes:
       - /var/services/virtual-traffic-counters/data/:/var/app/data/
       - /var/services/logs/virtual-traffic-counts/:/var/app/logs/
+      - /var/services/deployment/data/config/virtual-traffic-count:/var/app/config
     ports:
       - 5006:5000
 
