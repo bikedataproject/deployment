@@ -30,6 +30,13 @@ services:
       BIKEDATA_DB: /run/secrets/db_connection_string
     secrets:
       - db_connection_string
+  virtual-traffic-dump:
+    image: anywaysopen/traffic-count-dump:prod
+    volumes:
+      - /var/services/shared/virtual-traffic/:/var/app/input/
+      - /var/services/files/counts/:/var/app/output/
+      - /var/services/logs/virtual-traffic-dump/:/var/app/logs/
+      - /var/services/deployment/data/config/virtual-traffic-dump:/var/app/config
 
 secrets:
   db_connection_string:
