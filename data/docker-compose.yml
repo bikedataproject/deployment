@@ -30,8 +30,6 @@ services:
       BIKEDATA_DB: /run/secrets/db_connection_string
     secrets:
       - db_connection_string
-    ports:
-      - 5006:5000
 
 secrets:
   db_connection_string:
