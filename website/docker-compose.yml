@@ -13,3 +13,7 @@ services:
     image: bikedataproject/website:staging
     ports:
       - "5004:80"
+  data-portal-staging:
+    image: bikedataproject/data-portal:staging
+    ports:
+      - "5006:80"
