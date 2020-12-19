@@ -41,6 +41,7 @@ services:
     secrets:
       - db_connection_string
       - fitbit_client_secret
+      - fitbit_sub_ver_code
 
 secrets:
   db_connection_string:
