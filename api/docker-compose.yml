@@ -27,6 +27,19 @@ services:
       BIKEDATA_DB: /run/secrets/db_connection_string
     secrets:
       - db_connection_string
+  fitbit-integration-api:
+    image: bikedataproject/fitbit-integration-api:staging
+    ports:
+      - "5003:5000"
+    volumes:
+      - /var/services/registrations-api/logs:/var/app/logs
+    environment:
+      BIKEDATA_DB: /run/secrets/db_connection_string
+      BIKEDATA_FITBIT_CLIENT_SECRET: /run/secrets/fitbit_client_secret
+      BIKEDATA_FITBIT_SUB_VER_CODE: /run/secrets/fitbit_sub_ver_code
+    secrets:
+      - db_connection_string
+      - fitbit_client_secret
 
 secrets:
   db_connection_string:
@@ -36,6 +49,10 @@ secrets:
   strava_client_id:
     external: true
   strava_client_secret:
+    external: true
+  fitbit_client_secret:
+    external: true
+  fitbit_sub_ver_code:
     external: true
   db_host:
     external: true
