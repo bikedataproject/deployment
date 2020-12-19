@@ -32,7 +32,7 @@ services:
     ports:
       - "5003:5000"
     volumes:
-      - /var/services/registrations-api/logs:/var/app/logs
+      - /var/services/fitbit-integration-api/logs:/var/app/logs
     environment:
       BIKEDATA_DB: /run/secrets/db_connection_string
       BIKEDATA_FITBIT_CLIENT_SECRET: /run/secrets/fitbit_client_secret
