@@ -33,6 +33,7 @@ services:
       - "5003:5000"
     volumes:
       - /var/services/fitbit-integration-api/logs:/var/app/logs
+      - /var/services/deployment/api/config/fitbit-integration-api:/var/app/config
     environment:
       BIKEDATA_DB: /run/secrets/db_connection_string
       BIKEDATA_FITBIT_CLIENT_SECRET: /run/secrets/fitbit_client_secret
