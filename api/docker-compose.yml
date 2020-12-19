@@ -38,10 +38,12 @@ services:
       BIKEDATA_DB: /run/secrets/db_connection_string
       BIKEDATA_FITBIT_CLIENT_SECRET: /run/secrets/fitbit_client_secret
       BIKEDATA_FITBIT_SUB_VER_CODE: /run/secrets/fitbit_sub_ver_code
+      BIKEDATA_FITBIT_DB: /run/secrets/fitbit_db
     secrets:
       - db_connection_string
       - fitbit_client_secret
       - fitbit_sub_ver_code
+      - fitbit_db
 
 secrets:
   db_connection_string:
@@ -55,6 +57,8 @@ secrets:
   fitbit_client_secret:
     external: true
   fitbit_sub_ver_code:
+    external: true
+  fitbit_db:
     external: true
   db_host:
     external: true
