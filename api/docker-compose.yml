@@ -52,12 +52,12 @@ services:
     environment:
       BIKEDATA_DB: /run/secrets/db_connection_string
       BIKEDATA_FITBIT_CLIENT_SECRET: /run/secrets/fitbit_client_secret
-      BIKEDATA_FITBIT_SUB_VER_CODE: /run/secrets/fitbit_sub_ver_code
+      BIKEDATA_FITBIT_SUB_VER_CODE: /run/secrets/fitbit_sub_ver_code2
       BIKEDATA_FITBIT_DB: /run/secrets/fitbit_db
     secrets:
       - db_connection_string
       - fitbit_client_secret
-      - fitbit_sub_ver_code
+      - fitbit_sub_ver_code2
       - fitbit_db
 
 secrets:
