@@ -71,7 +71,7 @@ secrets:
     external: true
   fitbit_client_secret:
     external: true
-  fitbit_sub_ver_code:
+  fitbit_sub_ver_code2:
     external: true
   fitbit_db:
     external: true
