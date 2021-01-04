@@ -44,6 +44,21 @@ services:
       - fitbit_client_secret
       - fitbit_db
       - fitbit_sub_ver_code2
+  osm-integration:
+    image: bikedataproject/osm-integration:staging
+    volumes:
+      - /var/services/osm-integration/logs:/var/app/logs
+      - /var/services/deployment/api/config/osm-integration:/var/app/config
+    environment:
+      BIKEDATA_DB: /run/secrets/db_connection_string
+      BIKEDATA_OSM_USER_ID: /run/secrets/osm_user_id
+      BIKEDATA_OSM_DB: /run/secrets/osm_db
+      BIKEDATA_OSM_USER_PASS: /run/secrets/osm_user_pass
+    secrets:
+      - db_connection_string
+      - osm_db
+      - osm_user_id
+      - osm_user_pass
 
 secrets:
   db_connection_string:
