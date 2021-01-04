@@ -85,3 +85,9 @@ secrets:
     external: true
   db_name:
     external: true
+  osm_db:
+    external: true
+  osm_user_id:
+    external: true
+  osm_user_pass:
+    external: true
