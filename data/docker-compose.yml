@@ -44,7 +44,7 @@ services:
       - /var/services/integrations-osm-gpx-db/db:/var/lib/postgresql/data
       - /var/services/integrations-osm-gpx-db/dumps/:/var/lib/postgresql/dumps
     ports:
-      - 6300:5432
+      - 5006:5432
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/integrations-osm-gpx-db-password
     secrets:
