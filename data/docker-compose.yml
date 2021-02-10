@@ -38,6 +38,17 @@ services:
       - /var/services/files/counts/:/var/app/output/
       - /var/services/logs/virtual-traffic-dump/:/var/app/logs/
       - /var/services/deployment/data/config/virtual-traffic-dump:/var/app/config
+  integrations-osm-gpx-db:
+    image: postgres:13.1
+    volumes:
+      - /var/services/integrations-osm-gpx-db/db:/var/lib/postgresql/data
+      - /var/services/integrations-osm-gpx-db/dumps/:/var/lib/postgresql/dumps
+    ports:
+      - 5007:5432
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/integrations-osm-gpx-db-password
+    secrets:
+      - integrations-osm-gpx-db-password
 
 secrets:
   db_connection_string:
