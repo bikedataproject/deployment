@@ -63,7 +63,17 @@ services:
       - db_connection_string
       - osm_db
       - osm_user_id
-      - osm_user_pass
+      - osm_user_pass  
+  integrations-osm-gpx-dump:
+    image: bikedataproject/osm-integration-dump:staging
+    volumes:
+      - /var/services/integrations-osm-gpx-dump/logs:/var/app/logs
+      - /var/services/files/osm-gpx:/var/app/data
+      - /var/services/deployment/data/config/integrations-osm-gpx-dump:/var/app/config
+    environment:
+      BIKEDATA_OSM_DB: /run/secrets/osm_db
+    secrets:
+      - osm_db
       
 secrets:
   db_connection_string:
