@@ -33,7 +33,7 @@ services:
       - "5003:5000"
     volumes:
       - /var/services/identity-api/logs:/var/app/logs
-      - /var/services/deployment/data/config/identity-api:/var/app/config
+      - /var/services/deployment/api/config/identity-api:/var/app/config
     environment:
       IDENTITY_DB_FILE: /run/secrets/identity-db
       MAILJET_APISECRET_FILE: /run/secrets/mailjet-secret
