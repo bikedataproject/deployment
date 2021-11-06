@@ -27,8 +27,20 @@ services:
       BIKEDATA_DB: /run/secrets/db_connection_string
     secrets:
       - db_connection_string
+  identity-api:
+    image: bikedataproject/identity-api:staging
+    ports:
+      - "5003:5000"
+    volumes:
+      - /var/services/identity-api/logs:/var/app/logs
+    environment:
+      BIKEDATA_DB: /run/secrets/identity-db
+    secrets:
+      - identity-db
 
 secrets:
+  identity-db:
+    external: true
   db_connection_string:
     external: true
   db_stats_connection_string:
