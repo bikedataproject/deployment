@@ -33,13 +33,18 @@ services:
       - "5003:5000"
     volumes:
       - /var/services/identity-api/logs:/var/app/logs
+      - /var/services/deployment/data/config/identity-api:/var/app/config
     environment:
-      BIKEDATA_DB: /run/secrets/identity-db
+      IDENTITY_DB_FILE: /run/secrets/identity-db
+      MAILJET_APISECRET_FILE: /run/secrets/mailjet-secret
     secrets:
       - identity-db
+      - mailjet-secret
 
 secrets:
   identity-db:
+    external: true
+  mailjet-secret:
     external: true
   db_connection_string:
     external: true
