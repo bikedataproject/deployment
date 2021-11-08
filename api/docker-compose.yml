@@ -42,6 +42,23 @@ services:
       - identity-db
       - mailjet-secret
       - fitbit_client_secret
+  fitbit-integration-api:
+    image: bikedataproject/fitbit-integration-api:staging
+    ports:
+      - "5004:5000"
+    volumes:
+      - /var/services/fitbit-integration-api/logs:/var/app/logs
+      - /var/services/deployment/api/config/fitbit-integration-api:/var/app/config
+    environment:
+      BIKEDATA_DB: /run/secrets/db_connection_string
+      BIKEDATA_FITBIT_CLIENT_SECRET: /run/secrets/fitbit_client_secret
+      BIKEDATA_FITBIT_DB: /run/secrets/fitbit_db
+      BIKEDATA_FITBIT_SUB_VER_CODE: /run/secrets/fitbit_sub_ver_code2
+    secrets:
+      - db_connection_string
+      - fitbit_client_secret
+      - fitbit_db
+      - fitbit_sub_ver_code2
 
 secrets:
   identity-db:
