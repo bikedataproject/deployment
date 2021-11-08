@@ -37,9 +37,11 @@ services:
     environment:
       BIKEDATA_IDENTITY_DB_FILE: /run/secrets/identity-db
       BIKEDATA_MAILJET_APISECRET_FILE: /run/secrets/mailjet-secret
+      BIKEDATA_FITBIT_CLIENT_SECRET_FILE: /run/secrets/fitbit_client_secret
     secrets:
       - identity-db
       - mailjet-secret
+      - fitbit_client_secret
 
 secrets:
   identity-db:
